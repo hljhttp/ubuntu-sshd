@@ -4,6 +4,9 @@ MAINTAINER Aleksandar Diklic "https://github.com/rastasheep"
 RUN apt-get update
 
 RUN apt-get install -y openssh-server
+
+ADD ./bin /usr/local/sbin
+
 RUN mkdir /var/run/sshd
 
 RUN echo 'root:Root@1234' |chpasswd
@@ -15,4 +18,8 @@ VOLUME /etc/openvpn
 
 EXPOSE 22/tcp 443/tcp 1194/udp 8080/tcp
 
+CMD run
+
 CMD    ["/usr/sbin/sshd", "-D"]
+
+
