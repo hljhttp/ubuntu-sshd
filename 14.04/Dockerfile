@@ -12,5 +12,6 @@ RUN sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 
 EXPOSE 22
+EXPOSE 1194/udp
 
 CMD    ["/usr/sbin/sshd", "-D"]
