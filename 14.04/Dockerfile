@@ -11,7 +11,8 @@ RUN echo 'root:Root@1234' |chpasswd
 RUN sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 
-EXPOSE 22
-EXPOSE 1194/udp
+VOLUME /etc/openvpn
+
+EXPOSE 22/tcp 443/tcp 1194/udp 8080/tcp
 
 CMD    ["/usr/sbin/sshd", "-D"]
